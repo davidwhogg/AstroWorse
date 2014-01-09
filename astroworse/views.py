@@ -16,7 +16,7 @@ import os
 import random
 
 # Third-party
-from flask import request, render_template, redirect, url_for, g
+from flask import request, render_template, redirect, url_for, g, jsonify
 import requests
 from scipy.stats import rv_discrete
 
@@ -37,7 +37,11 @@ def load_text():
 
 @app.route('/')
 def index():
-    try:
+    return render_template("index.html")
+
+@app.route('/title')
+def get_title():
+        try:
         model = g.model
     except:
         load_text()
@@ -73,5 +77,4 @@ def index():
         else:
             better_sentence += " {}".format(token)
 
-    return "<html><h3>{}</h3></html>".format(better_sentence)
-
+    return jsonify(title=better_sentence)
