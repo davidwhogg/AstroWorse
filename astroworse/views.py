@@ -37,20 +37,26 @@ def load_text():
 
 @app.route('/')
 def index():
+    try:
+        model = g.model
+    except:
+        load_text()
+        model = g.model
+
     # sample the first word pair
     start_pairs = []
-    for key in g.model.keys():
+    for key in model.keys():
         if key.split()[0] == "START":
             start_pairs.append(key)
 
     start_pair = random.choice(start_pairs)
-    word = g.model[start_pair]['words'][g.model[start_pair]['dist'].rvs()]
+    word = model[start_pair]['words'][model[start_pair]['dist'].rvs()]
 
     current_bigram = (start_pair.split()[1], word)
     words = list(start_pair.split())
     while True:
         pair = " ".join(current_bigram)
-        word = g.model[pair]['words'][g.model[pair]['dist'].rvs()]
+        word = model[pair]['words'][model[pair]['dist'].rvs()]
         current_bigram = (current_bigram[1], word)
         words.append(word)
         if word == "END":
