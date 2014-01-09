@@ -17,6 +17,7 @@ import random
 
 # Third-party
 from flask import request, render_template, redirect, url_for, g, jsonify
+import nltk
 import requests
 from scipy.stats import rv_discrete
 
