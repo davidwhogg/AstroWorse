@@ -16,7 +16,7 @@ import os
 import random
 
 # Third-party
-from flask import request, render_template, redirect, url_for, g, jsonify
+from flask import request, render_template, redirect, url_for, g, jsonify, session
 import nltk
 import requests
 from scipy.stats import rv_discrete
@@ -27,14 +27,7 @@ from . import app
 def load_text():
     r = requests.get("http://deimos.astro.columbia.edu/scratch/trigram.json")
     data = r.json()
-
-    multinomial_family = dict()
-    for word_pair in data.keys():
-        multinomial_family[word_pair] = dict()
-        multinomial_family[word_pair]['dist'] = rv_discrete(name='trigram_{0}'.format(word_pair), values=(data[word_pair]['xk'],data[word_pair]['pk']))
-        multinomial_family[word_pair]['words'] = data[word_pair]['words']
-
-    g.model = multinomial_family
+    session['data'] = data
 
 @app.route('/')
 def index():
@@ -42,11 +35,18 @@ def index():
 
 @app.route('/title')
 def get_title():
-        try:
-        model = g.model
+    try:
+        data = session['data']
     except:
+        print("loading text")
         load_text()
-        model = g.model
+        data = session['data']
+
+    model = dict()
+    for word_pair in data.keys():
+        model[word_pair] = dict()
+        model[word_pair]['dist'] = rv_discrete(name='trigram_{0}'.format(word_pair), values=(data[word_pair]['xk'],data[word_pair]['pk']))
+        model[word_pair]['words'] = data[word_pair]['words']
 
     # sample the first word pair
     start_pairs = []
