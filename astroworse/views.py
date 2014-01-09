@@ -16,6 +16,7 @@ import os
 import random
 
 # Third-party
+import nltk
 from flask import request, render_template, redirect, url_for, g
 import requests
 from scipy.stats import rv_discrete

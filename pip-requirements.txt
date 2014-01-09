@@ -2,4 +2,4 @@ Flask==0.10.1
 nltk
 requests
 numpy
-scipy==0.12
+scipy
