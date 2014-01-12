@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8" />
+
+        <!-- CSS / Styling -->
+        <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,500,700,900,500italic,300,300italic,400italic' rel='stylesheet' type='text/css'>
+
+        <!-- Javscript dependencies -->
+        <script src="/static/js/util.js"></script>
+        <!--<script src="http://code.jquery.com/jquery.min.js"></script>-->
+        <script src="/static/js/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <header>
+            <h1>dumb-aas</h1>
+
+            <script type="text/javascript">
+                $(document).ready(function(){
+                    $("#generate").click(function() {
+                        console.log("clicked");
+                        $.getJSON("/title", function(resp){
+                            $("#title").text(resp['title']);
+                        });
+                    });
+                });
+
+            </script>
+
+        </header>
+
+        <div class="wrapper">
+
+            <div style="text-align: center; margin: 0 auto;">
+            <button id="generate" class="btn" type="submit" style='margin:auto'>generate</button>
+            </div>
+
+            <hr height='0px' width='50%'/>
+
+            <div id="title" style='text-align: center; font-size: 150%; font-weight: 500;'>
+            </div>
+
+            <hr height='0px' width='50%'/>
+
+            <footer width="50%">
+                <a href="http://adrian.pw">A. M. Price-Whelan</a>,&nbsp;
+                #hackAAS #aas223
+            </footer>
+        </div>
+
+    </body>
+</html>

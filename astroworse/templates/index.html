@@ -13,44 +13,50 @@
         <!--<script src="http://code.jquery.com/jquery.min.js"></script>-->
         <script src="/static/js/jquery.min.js"></script>
 
+	<style type="text/css">
+	    header {
+	        width: 75%;
+	        min-width: 800px;
+                margin: 0 auto;
+	        line-height: 100px;
+	        /*vertical-align: middle;*/
+	        background: url() no-repeat;
+	    }
+
+	    p#logo {
+	        font-size: 400%;
+	        margin: 0 auto;
+	        padding: 0;
+	        display: inline;
+	        /*vertical-align: middle;*/
+	    }
+
+	    p#tagline {
+	        padding-left: 20px;
+	        font-size: 100%;
+	        margin: 0 auto;
+	        display: inline;
+                /*vertical-align: middle;*/
+	    }
+
+	</style>
+
     </head>
 
     <body>
         <header>
-            <h1>dumb-aas</h1>
-
-            <script type="text/javascript">
-                $(document).ready(function(){
-                    $("#generate").click(function() {
-                        console.log("clicked");
-                        $.getJSON("/title", function(resp){
-                            $("#title").text(resp['title']);
-                        });
-                    });
-                });
-
-            </script>
-
+	    <p id="logo"><a href="http://www.astroworse.com">AstroWorse</a></p>
+            <p id="tagline">Tips and Tricks for Professional Astronomers</p>
         </header>
 
-        <div class="wrapper">
-
-            <div style="text-align: center; margin: 0 auto;">
-            <button id="generate" class="btn" type="submit" style='margin:auto'>generate</button>
-            </div>
-
-            <hr height='0px' width='50%'/>
+        <hr height='0px' width='50%'/>
+        <!--<div class="wrapper">
 
             <div id="title" style='text-align: center; font-size: 150%; font-weight: 500;'>
+	        <a href="dumb-aas.html">dumb-aas</a>
             </div>
 
-            <hr height='0px' width='50%'/>
-
-            <footer width="50%">
-                <a href="http://adrian.pw">A. M. Price-Whelan</a>,&nbsp;
-                #hackAAS #aas223
-            </footer>
-        </div>
+        </div>-->
 
     </body>
 </html>
