@@ -21,6 +21,10 @@
                 });
             }, 500);
 
+            $(document).ready(function () {
+                alert("HELLO! WELCOME TO ASTROWORSE!!!");
+            })
+
         </script>
 
     </head>
@@ -43,11 +47,13 @@
         <hr height='0px' width='50%'/>
 
         <div>
-            <div class="oneline">
-                <div><img src="/static/images/siren.gif" /></div>
-                <div>WELCOME TO ASTROWORSE</div>
-                <div><img src="/static/images/siren.gif" /></div>
+            <img src="/static/images/siren.gif" /><br/>
+            <div style="width: 600px; margin: 0 auto;">
+                <marquee class="comic" behavior="alternate" direction="right" scrollamount=20>
+                    WELCOME TO ASTROWORSE!!!
+                </marquee>
             </div>
+            <img src="/static/images/siren.gif" />
 
             <div>
                 <img src="/static/images/underconstruction.gif" width=50 height=50 />
@@ -60,7 +66,7 @@
                 <img src="/static/images/underconstruction.gif" width=50 height=50 />
             </div>
 
-            <div class="oneline" style="padding-top: 15px;">
+            <div class="comic" style="padding-top: 15px;">
                 Under construction!!
             </div>
 

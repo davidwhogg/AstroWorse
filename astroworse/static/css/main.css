@@ -32,21 +32,9 @@ header p#tagline {
     font-size: 50%;
 }
 
-div.oneline {
-    white-space:nowrap;
+.comic {
     vertical-align: middle;
     font-size: 150%;
     font-weight: bold;
-}
-
-div.oneline div {
-    display: inline;
-    white-space:nowrap;
-    vertical-align: middle
-}
-
-div.oneline div img {
-    display: inline;
-    white-space:nowrap;
-    vertical-align: middle
+    font-family: "Comic Sans MS";
 }
