@@ -1,0 +1,52 @@
+html {
+    font-family: "Times";
+    background-image: url("/static/images/space.jpeg");
+    color: #ffffff;
+}
+
+body {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+a, a:visited, a:hover {
+    color: blue;
+}
+
+header {
+    font-size: 400%;
+    margin: 0;
+    padding: 0;
+    display: inline;
+    vertical-align: middle;
+}
+
+header p {
+    display: inline;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+header p#tagline {
+    font-size: 50%;
+}
+
+div.oneline {
+    white-space:nowrap;
+    vertical-align: middle;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+div.oneline div {
+    display: inline;
+    white-space:nowrap;
+    vertical-align: middle
+}
+
+div.oneline div img {
+    display: inline;
+    white-space:nowrap;
+    vertical-align: middle
+}
