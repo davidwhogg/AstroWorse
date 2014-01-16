@@ -13,55 +13,47 @@ __author__ = "adrn <adrn@astro.columbia.edu>"
 # Standard library
 import json
 import os
-import random
 
 # Third-party
 from flask import request, render_template, redirect, url_for, g, jsonify, session
 import nltk
-import requests
+import numpy as np
 from scipy.stats import rv_discrete
 
 # Project
-from . import app
-
-def load_text():
-    r = requests.get("http://deimos.astro.columbia.edu/scratch/trigram.json")
-    data = r.json()
-    session['data'] = data
+from . import app, trigram_model
 
 @app.route('/')
 def index():
     return render_template("index.html")
 
-@app.route('/title')
-def get_title():
-    try:
-        data = session['data']
-    except:
-        print("loading text")
-        load_text()
-        data = session['data']
+@app.route('/dumbaas/', defaults={'seed':None})
+@app.route('/dumbaas/<int:seed>')
+def dumbaas(seed=None):
+    if seed is None:
+        seed = np.random.randint(int(1e10))
+    return render_template("dumb-aas.html", seed=seed)
 
-    model = dict()
-    for word_pair in data.keys():
-        model[word_pair] = dict()
-        model[word_pair]['dist'] = rv_discrete(name='trigram_{0}'.format(word_pair), values=(data[word_pair]['xk'],data[word_pair]['pk']))
-        model[word_pair]['words'] = data[word_pair]['words']
+@app.route('/title')
+@app.route('/title/<int:seed>')
+def get_title(seed=None):
+    if seed is not None:
+        np.random.seed(seed)
 
     # sample the first word pair
     start_pairs = []
-    for key in model.keys():
+    for key in trigram_model.keys():
         if key.split()[0] == "START":
             start_pairs.append(key)
 
-    start_pair = random.choice(start_pairs)
-    word = model[start_pair]['words'][model[start_pair]['dist'].rvs()]
+    start_pair = np.random.choice(start_pairs)
+    word = trigram_model[start_pair]['words'][trigram_model[start_pair]['dist'].rvs()]
 
     current_bigram = (start_pair.split()[1], word)
     words = list(start_pair.split())
     while True:
         pair = " ".join(current_bigram)
-        word = model[pair]['words'][model[pair]['dist'].rvs()]
+        word = trigram_model[pair]['words'][trigram_model[pair]['dist'].rvs()]
         current_bigram = (current_bigram[1], word)
         words.append(word)
         if word == "END":
@@ -78,4 +70,4 @@ def get_title():
         else:
             better_sentence += " {}".format(token)
 
-    return jsonify(title=better_sentence)
+    return jsonify(title=better_sentence.strip().capitalize())
