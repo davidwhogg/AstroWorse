@@ -81,3 +81,16 @@ a:hover {
 .wrapper #title {
     margin: 50px;
 }
+
+input[type=button] {
+  font-size: 125%;
+  background: #eee;
+  border-radius: 6px;
+  border: 1px solid #aaa;
+  cursor: pointer;
+}
+
+input[type=button]:hover {
+  background: #cfcfcf;
+  cursor: pointer;
+}
