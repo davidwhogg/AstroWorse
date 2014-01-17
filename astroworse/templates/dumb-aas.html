@@ -42,7 +42,7 @@
 
         <script type="text/javascript">
             $(document).ready(function(){
-                $.getJSON("/title/{{seed}}", function(resp){
+                $.getJSON("/dumbaas/title/{{seed}}", function(resp){
                     $("#title").text(resp['title']);
                 });
             });

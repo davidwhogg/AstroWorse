@@ -34,8 +34,8 @@ def dumbaas(seed=None):
         seed = np.random.randint(int(1e10))
     return render_template("dumb-aas.html", seed=seed)
 
-@app.route('/title')
-@app.route('/title/<int:seed>')
+@app.route('/dumbaas/title')
+@app.route('/dumbaas/title/<int:seed>')
 def get_title(seed=None):
     if seed is not None:
         np.random.seed(seed)
@@ -71,3 +71,4 @@ def get_title(seed=None):
             better_sentence += " {}".format(token)
 
     return jsonify(title=better_sentence.strip().capitalize())
+
