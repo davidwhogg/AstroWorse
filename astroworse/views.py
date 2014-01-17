@@ -72,3 +72,6 @@ def get_title(seed=None):
 
     return jsonify(title=better_sentence.strip().capitalize())
 
+@app.route('/dumbaas/about')
+def dumbaas_about():
+    return render_template("about.html")
